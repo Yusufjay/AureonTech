@@ -307,8 +307,7 @@ include 'koneksi.php';
       transition: transform 0.3s ease;
     }
 
-    /* 
-       BANNER STYLE (UKURAN BESAR & TEKS DI BAWAH)
+    /* BANNER STYLE (UKURAN BESAR & TEKS DI BAWAH)
      */
     .header-banner {
       width: 100%;
@@ -610,8 +609,7 @@ include 'koneksi.php';
       right: -20px;
     }
 
-    /* 
-       MEDIA QUERIES (RESPONSIVE RULES)
+    /* MEDIA QUERIES (RESPONSIVE RULES)
     */
 
     /* TABLET & MOBILE (Max Width 992px) */
@@ -651,8 +649,15 @@ include 'koneksi.php';
         font-size: 1.4rem;
       }
 
-      .shopee-cart {
+      /* Wrapper untuk Cart dan Hamburger agar sejajar */
+      .mobile-actions {
         order: 2;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .shopee-cart {
         margin-left: 0;
         font-size: 1.8rem;
       }
@@ -802,6 +807,21 @@ include 'koneksi.php';
         gap: 10px;
       }
     }
+
+    /* Style untuk Offcanvas Menu Mobile */
+    .offcanvas-body .nav-link {
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+      color: #333;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .offcanvas-body .nav-link:hover {
+      color: #0d6efd;
+    }
   </style>
 </head>
 
@@ -829,7 +849,7 @@ include 'koneksi.php';
               <li><a class="dropdown-item custom-dropdown-item" onclick="changeLanguage('en')" id="lang-en"><span>English</span></a></li>
             </ul>
           </div>
-          <a href="#" class="fw-bold ms-4" data-i18n="register">Daftar</a>
+          <a href="register.php" class="fw-bold ms-4" data-i18n="register">Daftar</a>
           <a href="login.php" class="fw-bold" style="border:none" data-i18n="login">Log In</a>
         </div>
       </div>
@@ -858,13 +878,59 @@ include 'koneksi.php';
             <a href="#">Laptop Gaming</a> <a href="#">iPhone 15</a> <a href="#">Headset Bluetooth</a> <a href="#">Keyboard Mekanik</a> <a href="#">Smart TV</a>
           </div>
         </div>
-        <div class="shopee-cart">
-          <i class="bi bi-cart3"></i>
-          <span class="cart-badge">3</span>
+
+        <div class="mobile-actions">
+          <div class="shopee-cart">
+            <i class="bi bi-cart3"></i>
+            <span class="cart-badge">3</span>
+          </div>
+
+          <button class="btn text-white d-lg-none p-0 ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+            <i class="bi bi-list" style="font-size: 2.5rem;"></i>
+          </button>
         </div>
+
       </div>
     </div>
   </header>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel" style="width: 80%;">
+    <div class="offcanvas-header bg-light border-bottom">
+      <h5 class="offcanvas-title fw-bold text-primary" id="mobileMenuLabel">Menu Aureon</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-3">
+      <div class="d-grid gap-2 mb-4">
+        <a href="login.php" class="btn btn-primary fw-bold py-2">Log In</a>
+        <a href="register.php" class="btn btn-outline-primary fw-bold py-2">Daftar Akun</a>
+      </div>
+
+      <hr>
+
+      <div class="nav flex-column">
+        <a href="#" class="nav-link">
+          <span><i class="bi bi-shop me-2 text-muted"></i> Seller Centre</span>
+          <i class="bi bi-chevron-right small text-muted"></i>
+        </a>
+        <a href="#" class="nav-link">
+          <span><i class="bi bi-download me-2 text-muted"></i> Download Aplikasi</span>
+          <i class="bi bi-chevron-right small text-muted"></i>
+        </a>
+        <a href="#" class="nav-link">
+          <span><i class="bi bi-question-circle me-2 text-muted"></i> Bantuan</span>
+          <i class="bi bi-chevron-right small text-muted"></i>
+        </a>
+        <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseLang">
+          <span><i class="bi bi-globe me-2 text-muted"></i> Bahasa</span>
+          <i class="bi bi-chevron-down small text-muted"></i>
+        </a>
+        <div class="collapse bg-light rounded p-2 mt-1" id="collapseLang">
+          <a class="dropdown-item py-2" onclick="changeLanguage('id')">Bahasa Indonesia</a>
+          <a class="dropdown-item py-2" onclick="changeLanguage('en')">English</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <header class="container-fluid bg-white py-4 px-3" data-aos="zoom-in">
     <div class="container-fluid px-0">
